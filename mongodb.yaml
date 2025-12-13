@@ -1,0 +1,15 @@
+- name: configure the mongodb server
+  hosts: mongodb
+  become: yes
+  tasks:
+  - name: copy the mongo.repo
+    ansible.builtin.copy:
+    src: mongo.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+  - name: install mongodb
+    ansibly.builtin.shell: dnf install mongodb-org -y 
+    register: output_mongo
+  - name: print the output
+    ansible.builtin.debug:
+      msg: "{{{output_mongo}}}"
