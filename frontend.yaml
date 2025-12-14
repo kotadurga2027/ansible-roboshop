@@ -5,7 +5,7 @@
   - name: disable the current nginx
     ansible.builtin.command: dnf module disable nginx -y
 
-  - name: enable nginx:1.24
+  - name: enable nginx
     ansible.builtin.command: dnf module enable nginx:1.24 -y
 
   - name: install nginx
@@ -40,12 +40,12 @@
       dest: /usr/share/nginx/html
       remote_src: yes
 
-  - name: remove the existing data in /etc/nginx/nginx.conf
+  - name: remove the existing data in nginx conf
     ansible.builtin.file:
       path: /etc/nginx/nginx.conf
       state: absent
 
-  - name: copy the nginx.conf data to this path /etc/nginx/nginx.conf
+  - name: copy the nginx.conf data to this path
     ansible.builtin.copy:
       src: nginx.conf
       dest: /etc/nginx/nginx.conf
