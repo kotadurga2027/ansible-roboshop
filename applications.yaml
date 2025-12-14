@@ -1,3 +1,3 @@
-- import_playbook: catalouge.yaml
 - import_playbook: mongodb.yaml
+- import_playbook: catalouge.yaml
 - import_playbook: redis.yaml
