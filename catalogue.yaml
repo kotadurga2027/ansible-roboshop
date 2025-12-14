@@ -67,7 +67,7 @@
 
     - name: check produscts loaded or not from mongodb
       ansible.builtin.command: mongosh --host mongodb.kotadurgagangumalla.fun --eval 'db.getMongo().getDBNames().indexOf("catalogue")'
-      register: catalouge_output
+      register: catalogue_output
 
     - name: print the catalogue output
       ansible.builtin.debug:
