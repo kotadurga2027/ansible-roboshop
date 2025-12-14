@@ -1,5 +1,5 @@
-- name: configure the catalouge server
-  hosts: catalouge
+- name: configure the catalogue server
+  hosts: catalogue
   become: yes
   tasks:
     - name: disable the nodejs module
@@ -34,7 +34,7 @@
       ansible.builtin.unarchive:
         src: /tmp/catalogue.zip
         dest: /app
-        
+
 
 
         
