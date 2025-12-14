@@ -39,4 +39,17 @@
       src: /tmp/frontend.zip
       dest: /usr/share/nginx/html
 
+  - name: remove the existing data in /etc/nginx/nginx.conf
+    ansible.builtin.file:
+      path: /etc/nginx/nginx.conf
+      state: absent
+
+  - name: copy the nginx.conf data to this path /etc/nginx/nginx.conf
+    ansible.builtin.copy:
+      src: nginx.conf
+      dest: /etc/nginx/nginx.conf
+
+  - name: restart the nginx 
+    ansible.builtin.command: systemctl restart nginx 
+
 
