@@ -13,13 +13,14 @@
      name: redis
      state: installed.
     
-  - name: change the ip from 127.0.0.1 to 0.0.0.0 in /etc/redis/redis.conf
+  - name: change the ip from 127.0.0.1 to 0.0.0.0 in redis conf file
     ansible.builtin.replace:
       path: /etc/redis/redis.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
 
-  - name: make the changes line data in /etc/redis/redis.conf
+  - name: make the changes line data in redis conf file
+    ansible.builtin.lineinfile:
       path: /etc/redis/redis.conf
       regexp: 'protected-mode'
       line: protected-mode no
