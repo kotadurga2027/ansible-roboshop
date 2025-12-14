@@ -62,7 +62,8 @@
 
     - name: install the mongodb server
       ansible.builtin.dnf:
-        name: present
+        name: mongodb-mongosh
+        state: present
 
     - name: load the mongodb data
       community.mongodb.mongodb_shell:
