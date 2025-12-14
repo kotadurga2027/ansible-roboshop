@@ -11,7 +11,7 @@
   - name: install the redis
     ansible.builtin.dnf:
      name: redis
-     state: installed.
+     state: installed
     
   - name: change the ip from 127.0.0.1 to 0.0.0.0 in redis conf file
     ansible.builtin.replace:
