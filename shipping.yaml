@@ -81,4 +81,6 @@
       - /app/db/master-data.sql
 
   - name: restart the shipping service
-    ansible.builtin.command: systemctl restart shipping
+    ansible.builtin.service:
+     name: shipping
+     state: restarted
