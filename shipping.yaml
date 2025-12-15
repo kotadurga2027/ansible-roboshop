@@ -2,13 +2,13 @@
   hosts: shipping
   become: yes
   tasks:
-  - name: install the maven
+  - name: install the maven and mysql
     ansible.builtin.dnf:
-      name: "{item}}"
+      name: "{{item}}"
       state: installed
     loop:
-     - mysql
      - maven
+     - mysql
 
   - name: create user
     ansible.builtin.user:
