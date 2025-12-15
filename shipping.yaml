@@ -1,0 +1,62 @@
+- name: configure the shipping
+  hosts: shipping
+  become: yes
+  tasks:
+  - name: install the maven
+    ansible.builtin.dnf:
+      name: "{item}}"
+      state: installed
+    loop:
+     - mysql
+     - maven
+
+  - name: create user
+    ansible.builtin.user:
+      name: roboshop
+      shell: /sbin/nologin
+      home: /app
+      system: yes
+
+  - name: create directory
+    ansible.builtin.file:
+      path: /app
+      state: directory
+
+  - name: download the shipping dtata which is devloped by devloper
+    ansible.builtin.get_url:
+      url: https://roboshop-artifacts.s3.amazonaws.com/shipping-v3.zip
+      dest: /tmp/shipping.zip
+
+  - name: unzip the downloaded file
+    ansible.builtin.unarchive:
+      src: /tmp/shipping.zip
+      dest: /app 
+      remote_src: yes
+
+  - name: To install the maven dependencies
+    ansible.builtin.command: mvn clean package
+    args:
+      chdir: /app
+
+  - name: rename the file name
+    ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
+    args:
+      chdir: /app
+    
+  - name: copy the shipping service file 
+    ansible.builtin.copy:
+      src: shipping.service
+      dest: /etc/systemd/system/shipping.service
+
+  - name: reload the daemon
+    ansible.builtin.systemd_service:
+      deamon_reload: true
+
+  - name: start and enabled the service
+    ansible.builtin.service:
+      name: shipping
+      state: started
+      enabled: yes
+
+
+    
