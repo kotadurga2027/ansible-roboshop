@@ -16,7 +16,7 @@
       executable: pip3.9
     loop:
     - cryptography
-    - PyMySq
+    - PyMySql
 
   - name: create user
     ansible.builtin.user:
