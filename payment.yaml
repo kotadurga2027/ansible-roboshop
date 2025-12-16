@@ -4,8 +4,12 @@
   tasks: 
   - name: install the python
     ansible.builtin.dnf:
-      name: python3 gcc python3-devel
+      name: "{{item}}"
       state: installed
+    loop:
+      - python3
+      - gcc
+      - python3-devel
 
   - name: create the non-root user as roboshop
     ansible.builtin.user:
