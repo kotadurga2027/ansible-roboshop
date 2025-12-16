@@ -10,6 +10,7 @@
       - python3
       - gcc
       - python3-devel
+      - python3-pip
 
   - name: create the non-root user as roboshop
     ansible.builtin.user:
