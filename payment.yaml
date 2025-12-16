@@ -54,3 +54,8 @@
       name: payment
       state: started
       enabled: yes
+
+
+  - name: payment configuration sucsesfull
+    ansible.builtin.debug:
+      msg: "payment service configured"
